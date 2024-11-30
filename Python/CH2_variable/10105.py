@@ -1,0 +1,1 @@
+print(f"{input()}+{input()}+{input()}的價格為:{float(input())+float(input())+float(input()):.2f}元")
