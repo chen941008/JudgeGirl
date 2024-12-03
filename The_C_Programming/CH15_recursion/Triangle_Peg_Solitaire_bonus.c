@@ -2,7 +2,8 @@
 #include <stdbool.h>
 #include <stdlib.h>
 #include <string.h>
-int max_depth=0,size_of_triangle,result_game_board[36][7][7]={0},result_move[36][2][2]={0}, current_game_board[36][7][7]={0}, current_move[36][2][2]={0},area,target_depth,Solution_count=0,remain;//result_move[n][k],from k=0 to k=1.
+int max_depth=0,size_of_triangle,result_game_board[36][7][7]={0},result_move[36][2][2]={0}, current_game_board[36][7][7]={0}, current_move[36][2][2]={0},area,target_depth,remain;//result_move[n][k],from k=0 to k=1.
+long long Solution_count=0;
 bool vertical_symmetry(int depth,int row,int col){
     if(row!=col){
         return false;
@@ -46,6 +47,7 @@ void dfs(int depth){
     /*****************************更新答案******************************/
     if(depth==target_depth){
         Solution_count++;
+        /*
         printf("Solution %d found with %d pegs left at step %d\n",Solution_count,remain,target_depth);
         for(int i=0;i<=target_depth;i++){
             if(i==0){
@@ -70,6 +72,7 @@ void dfs(int depth){
             }
             printf("\n");
         }
+        */
         return;
     }
     /*****************************遊戲過程******************************/
@@ -159,6 +162,7 @@ int main(){
     printf("Please enter the size of the triangle:\n");
     scanf("%d",&size_of_triangle);
     area=(size_of_triangle+size_of_triangle*size_of_triangle)/2;
+    /*
     while (true){
         printf("Please enter the target number of pegs to remain:\n");
         scanf("%d",&remain);
@@ -170,6 +174,7 @@ int main(){
         }
     }
     target_depth=area-remain-1;
+    */
     while(true){
         printf("Enter the row and column of the empty space (starting from 0):\n");
         scanf("%d%d",&initial_zero_pos[0],&initial_zero_pos[1]);
@@ -193,7 +198,14 @@ int main(){
             }
         }
     }
-    dfs(0);
+    for(int i=(size_of_triangle+1)*size_of_triangle/2-1;i>=1;i--){
+        Solution_count=0;
+        target_depth=area-i-1;
+        dfs(0);
+        printf("剩餘%d時 有%lld解\n",i,Solution_count);
+    }
+    //dfs(0);
+    /*
     if(Solution_count==0){
         printf("Warning: Could not find a solution within reasonable steps.\n");
     }
@@ -202,4 +214,5 @@ int main(){
         printf("Total solutions found: %d\n",Solution_count);
     }
     printf("Goodbye! Thanks for playing Triangle Solitaire!\n");
+    */
 }
