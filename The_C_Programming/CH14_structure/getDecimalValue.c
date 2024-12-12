@@ -4,16 +4,22 @@
 
 // val : 紀錄0或1
 // next : 記錄下一個結構
+// 取得二進制 linked list 的十進制數值
 int getDecimalValue(struct ListNode* head)
 {
-    if(head==NULL){
-        return 0;
+    // 儲存結果
+    int sum = 0;
+
+    // 遍歷 linked list
+    while (head != NULL) {
+        //  move current sum one bit to the left
+        //  and add the value of the current node
+        sum = (sum << 1) | head->val;
+
+        //  move to next node
+        head = head->next;
     }
-    int sum=0;
-    struct ListNode* ptr=head;
-    while (ptr!=NULL){
-        sum=sum*2+ptr->val;
-        ptr=ptr->next;
-    }
+
+    //  return the result
     return sum;
 }
