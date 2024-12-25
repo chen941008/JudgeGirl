@@ -1,14 +1,17 @@
 #include <stdio.h>
 int rows,cols,lake[400][400]={0},result[10000]={0},count=0;
-int count_lakes(int r,int c){
-    if(lake[r][c]==0||lake[r][c]==-1)return 0;
-    int sum=1;
-    lake[r][c]=-1;
-    if(r-1>=0)sum+=count_lakes(r-1,c);
-    if(c-1>=0)sum+=count_lakes(r,c-1);
-    if(r+1<rows)sum+=count_lakes(r+1,c);
-    if(c+1<cols)sum+=count_lakes(r,c+1);
-    return sum;
+int count_lakes(int current_row,int current_col){
+    if(current_row<0||current_row>=rows||current_col<0||current_col>=cols||lake[current_row][current_col]==0){
+        return 0;
+    }
+    lake[current_row][current_col]=0;
+    return 1+count_lakes(current_row+1,current_col)
+            +count_lakes(current_row-1,current_col)
+            +count_lakes(current_row,current_col+1)
+            +count_lakes(current_row,current_col-1);
+}
+int compare(const void *a,const void *b){
+    return -(*(int *)a-*(int *)b);
 }
 int main(){
     scanf("%d%d",&rows,&cols);
@@ -19,20 +22,15 @@ int main(){
     }
     for(int i=0;i<rows;i++){
         for(int j=0;j<cols;j++){
-            if(lake[i][j]==1)result[count++]=count_lakes(i,j);
-        }
-    }
-    int temp;
-    for(int i=count;i>0;i--){
-        for(int j=1;j<i;j++){
-            if(result[j-1]>result[j]){
-                temp=result[j-1];
-                result[j-1]=result[j];
-                result[j]=temp;
+            if(lake[i][j]==1){
+                result[count]=count_lakes(i,j);
+                count++;
             }
         }
     }
-    for(int i=count-1;i>=0;i--){
+    qsort(result,count,sizeof(int),compare);
+    for(int i=0;i<count;i++){
         printf("%d\n",result[i]);
     }
+    return 0;
 }

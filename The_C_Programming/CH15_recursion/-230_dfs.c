@@ -5,11 +5,11 @@ int big(int a,int b){
     return a > b ? a : b;
 }
 
-int dfs(int i,int current_w,int value){
+int dfs(int depth,int current_w,int value){
     if (current_w>w)return 0;
-    if(i==n)return value;
-    return big(dfs(i+1,current_w+bag[i][0],value+bag[i][1]),
-                 dfs(i+1,current_w,value));
+    if(depth==n)return value;
+    return big(dfs(depth+1,current_w+bag[depth][0],value+bag[depth][1]),
+                dfs(depth+1,current_w,value));
 }
 
 int main(){
