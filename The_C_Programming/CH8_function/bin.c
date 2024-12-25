@@ -1,13 +1,9 @@
 #include "bin.h"
 int bin(int N) {
-    int b1=0,temp=N;
-    while (temp!=0) {
-        if(temp%2!=0){
-            b1++;
-            temp--;
-            temp/=2;
-        }
-        else temp/=2;
+    int b1=0;
+    while (N!=0) {
+       b1+=1 & N;
+       N>>=1;
     }
     return b1;
 }

@@ -4,14 +4,14 @@
 typedef struct data{
     char med[16];
     int time;
-}data;
+}data_t;
 int main(){
     int times;
     scanf("%d",&times);
     while(times--){
         int med_n,take_n;
         scanf("%d%d",&med_n,&take_n);
-        data *dataArray=(data*)malloc(med_n * sizeof(data));
+        data_t *dataArray=malloc(med_n * sizeof(data_t));
         for(int i=0;i<med_n;i++){
             scanf("%s%d",(dataArray[i].med),&(dataArray[i].time));
         }

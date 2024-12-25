@@ -4,43 +4,42 @@ typedef struct List{
     int num;
     int mod;
     int Even_Odd;
-}List;
+}List_t;
 int  compare(const void* a,const void* b){
-    List* pa = (List*)a;
-    List* pb = (List*)b;
+    List_t *pa=(List_t*)a;
+    List_t *pb=(List_t*)b;
     if(pa->mod!=pb->mod){
         return pa->mod-pb->mod;
     }
+    if(pa->Even_Odd!=pb->Even_Odd){
+        return -(pa->Even_Odd-pb->Even_Odd);
+    }
+    if(pa->Even_Odd==1){
+        return -(pa->num-pb->num);
+    }
     else{
-        if(pa->Even_Odd!=pb->Even_Odd){
-            return (pa->Even_Odd>0)? -1:1;
-        }
-        else if (pa->Even_Odd==1){
-            return pb->num-pa->num;
-        }
-        else {
-            return pa->num-pb->num;
-        }
+        return pa->num-pb->num;
     }
 }
 int main(){
-    int len,Mod;
-    while(scanf("%d%d",&len,&Mod)){
-        if(!(len||Mod)){
-            printf("%d %d",0,0);
-            break;
+    while(1){
+        int number,mod;
+        scanf("%d%d",&number,&mod);
+        if(number==0&&mod==0){
+            printf("0 0\n");
+            return 0;
         }
-        List *data=(List*)malloc(len*sizeof(List));
-        for(int j=0;j<len;j++){
-            scanf("%d",&(data[j].num));
-            data[j].mod=data[j].num%Mod;
-            data[j].Even_Odd=abs(data[j].num)%2;
+        List_t *data=malloc(number*sizeof(List_t));
+        for(int i=0;i<number;i++){
+            scanf("%d",&data[i].num);
+            data[i].mod=data[i].num%mod;
+            data[i].Even_Odd=abs(data[i].num%2);
         }
-        qsort(data,len,sizeof(List),compare);
-        printf("%d %d\n",len,Mod);
-        for(int j=0;j<len;j++){
-            printf("%d\n",data[j].num);
+        qsort(data,number,sizeof(List_t),compare);
+        printf("%d %d\n",number,mod);
+        for(int i=0;i<number;i++){
+            printf("%d\n",data[i].num);
         }
-        free(data);
     }
+    
 }

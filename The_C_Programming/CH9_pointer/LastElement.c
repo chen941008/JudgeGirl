@@ -1,20 +1,20 @@
 #include "LastElement.h"
 #include <limits.h>
-int pos[1000]={0},count=0;//偶數為y 奇數為x
+int index;
 int extractMax(int* stone, int stoneSize) {
     int max=INT_MIN;
     for(int i=0;i<stoneSize;i++){
         if(stone[i]>max){
             max=stone[i];
-            pos[count]=i;
+            index=i;
         }
     }
-    stone[pos[count]]=-1;
+    stone[index]=-1;
     return max;
 }
  
 void insert(int* stone, int stoneSize, int value) {
-    stone[pos[count]]=value;
+    stone[index]=value;
 }
 
 int lastStoneWeight(int* stones, int stonesSize) {
@@ -29,7 +29,6 @@ int lastStoneWeight(int* stones, int stonesSize) {
         }
     }
     int y=extractMax(stones, stonesSize);
-    count++;
     int x=extractMax(stones, stonesSize);
     if(x!=y)insert(stones, stonesSize, y-x);
     return lastStoneWeight(stones, stonesSize);
