@@ -103,7 +103,7 @@ int main() {
     scanf("%d", &n);
     
     // Allocate memory for 'n' employees
-    Employee *employeeArray = (Employee *)malloc(n * sizeof(Employee));
+    Employee *employeeArray = malloc(n * sizeof(Employee));
     
     // Read each employee's details
     for (int i = 0; i < n; i++) {
