@@ -20,7 +20,7 @@
     ```
 2. 進入專案目錄：
     ```bash
-    cd judgegirl
+    cd Judgegirl
     ```
 3. 編譯程式碼： 若使用 C 語言，請確認你已安裝 gcc 或其他 C 編譯器，然後使用以下指令編譯：
     ```bash
@@ -64,7 +64,7 @@ If you wish to compile and test it in your local environment, follow these steps
     ```
 2. Navigate to the project directory:
     ```bash
-    cd judgegirl
+    cd Judgegirl
     ```
 3. Compile the code: If you are using C, make sure you have installed gcc or any other C compiler. Then compile using the following command:
     ```bash
