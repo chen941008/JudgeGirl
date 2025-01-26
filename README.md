@@ -52,7 +52,7 @@ This project contains my code solutions on the JudgeGirl platform, aimed at show
 - Includes algorithms and data structures of different levels, from basic to advanced problems   
 - Implemented in C, focusing on efficient and concise code design
 
-# Installation and Setup
+## Installation and Setup
 
 The code in this project is designed for the JudgeGirl platform. You can directly copy the code to JudgeGirl for testing and submission.
 
